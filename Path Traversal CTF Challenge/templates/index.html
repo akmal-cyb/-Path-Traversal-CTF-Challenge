@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory Traversal CTF - Web Security Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Linux Server File Explorer!</h1>
+        <p>Your task is to retrieve the hidden flag inside the system's file using directory traversal.</p>
+    </header>
+
+    <main>
+        <div class="gallery">
+            <div class="image">
+                <h3>Photo 1: Cute Cat</h3>
+                <img src="{{ url_for('static', filename='image1.jpg') }}" alt="Cute Cat">
+                <a href="/download?file=image1.jpg" class="download-btn" download>Download Image 1</a>
+            </div>
+            <div class="image">
+                <h3>Photo 2: Cute Dog</h3>
+                <img src="{{ url_for('static', filename='image2.jpg') }}" alt="Lovely Dog">
+                <a href="/download?file=image2.jpg" class="download-btn" download>Download Image 2</a>
+            </div>
+        </div>
+
+        <!-- Hint Link and Hidden Hint Section -->
+        <div class="hint">
+            <a href="javascript:void(0);" onclick="toggleHint()">Need a Hint?</a>
+            <div id="hint-section" style="display:none;">
+                <h2>Hint:</h2>
+                <p>The flag is hidden somewhere deep in the system, try to access the <code>/etc/passwd</code> file. Use <strong>../</strong> to traverse upwards in the directory!</p>
+            </div>
+        </div>
+
+        <!-- Flag Input Section -->
+        <div class="flag-input">
+            <h3>Enter the Flag:</h3>
+            <form action="/check_flag" method="POST">
+                <input type="text" id="flag" name="flag" placeholder="flag{flag}"  style="font-family: 'Press Start 2P', cursive;" required>
+                <button type="submit" style="font-family: 'Press Start 2P', cursive;">Submit Flag</button>
+
+            </form>
+
+            <!-- Display feedback -->
+            {% if correct_flag %}
+                <p class="correct-flag">Correct! 🎉</p>
+            {% elif incorrect_flag %}
+                <p class="incorrect-flag">Incorrect! 😞 Try again.</p>
+            {% endif %}
+        </div>
+
+        <footer>
+            <p>Powered by Flask | Directory Traversal CTF Game</p>
+        </footer>
+    </main>
+
+    <script>
+        // Function to toggle the visibility of the hint section
+        function toggleHint() {
+            var hintSection = document.getElementById('hint-section');
+            if (hintSection.style.display === "none") {
+                hintSection.style.display = "block";
+            } else {
+                hintSection.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
