@@ -1,6 +1,8 @@
 # 🛡️ Path Traversal CTF Challenge
 
 A simple web-based CTF challenge designed to teach and test **path traversal** vulnerabilities.
+![image](https://github.com/user-attachments/assets/a55f4329-52b9-4a83-878d-04039357945f)
+
 
 ## 🕹️ Challenge Description
 
