@@ -15,6 +15,8 @@ However, the download endpoint is vulnerable to **path traversal**. If you manip
 http://localhost:5000/download?file=../../../../etc/passwd
 
 You can access sensitive system files such as `etc/passwd`. Somewhere in these files, a **flag** is hidden for the player to find.
+Once the flag is found, you can submit it using the input form on the main page to check if it's correct.
+
 ## 🛠️ Features
 
 - Built with **Python (Flask)** and **HTML/CSS**
